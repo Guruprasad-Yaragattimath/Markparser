@@ -51,3 +51,53 @@ We do NOT care about:
 * You do not need any fancy algorithms or data structures for this. This problem is meant to be relatively straightforward, and your code's efficiency doesn't matter.
 * Feel free to use the Internet and an AI autocomplete (e.g. Cursor Tab, Copilot). Please do not use any frontier models (sonnet, 4o, o1, etc.). 
 * Don't import any dependencies.
+
+* 📄 Changes Made
+Streaming Markdown Parser Implementation
+
+This update implements a streaming Markdown parser that processes Markdown content incrementally as it is received in chunks, simulating real-time model output.
+
+✅ Key Features Implemented
+
+Optimistic Rendering
+
+Markdown elements are styled immediately when their opening syntax is detected, without waiting for closing tokens.
+
+Inline Code Support
+
+Inline code enclosed in single backticks (code) is parsed and rendered correctly.
+
+Handles cases where backticks are split across streamed tokens.
+
+Code Block Support
+
+Fenced code blocks using triple backticks (```) are parsed and rendered as block elements.
+
+Supports multi-line content and preserves formatting.
+
+Correctly handles backticks split across token boundaries.
+
+Streaming-Safe Parsing
+
+Maintains parser state across tokens using lightweight global state.
+
+Supports multiple state transitions within a single streamed token.
+
+DOM-Safe Updates
+
+New elements are appended incrementally to the DOM.
+
+The DOM is never replaced, allowing users to select and copy text while streaming continues.
+
+🛠 Technical Notes
+
+Implemented using plain TypeScript without external dependencies.
+
+Parsing logic is intentionally simple and state-based for clarity and speed.
+
+Styling is applied inline for visual differentiation between normal text, inline code, and code blocks.
+
+📁 Modified Files
+
+src/MarkdownParser.ts
+Added streaming-aware parsing logic for inline code and code blocks.
